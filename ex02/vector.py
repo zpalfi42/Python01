@@ -1,6 +1,9 @@
 import sys
 
 class   Vector:
+    """_summary_
+    """
+
     def __init__(self, values) -> None:
         if (isinstance(values, list)):
             self.values = values
@@ -23,7 +26,7 @@ class   Vector:
             for i in range(values[0], values[1]):
                 self.values.append([float(i)])
             self.shape = (len(values), 1)
-            
+
     def dot(self, v):
         if (not isinstance(v, Vector)):
             print("Error: Not a valid argument.")
@@ -38,7 +41,7 @@ class   Vector:
             for y in range(self.shape[1]):
                 res += self.values[x][y] * v.values[x][y]
         return res
-    
+
     def T(self):
         values = []
         for x in range(self.shape[1]):
@@ -48,7 +51,7 @@ class   Vector:
             values.append(value)
         v = Vector(values)
         return (v)
-    
+
     def __add__(self, vx):
         if (not isinstance(vx, Vector) or self.shape[0] is not vx.shape[0] or self.shape[1] is not vx.shape[1]):
             print("Error: Wrong arguments")
@@ -71,12 +74,12 @@ class   Vector:
         for x in range(self.shape[0]):
             value = []
             for y in range(self.shape[1]):
-                value.append(float(self.values[x][y] + vx.values[x][y]))
+                value.append(float(vx.values[x][y] + self.values[x][y]))
             values.append(value)
         
         v = Vector(values)
         return(v)
-    
+
     def __sub__(self, vx):
         if (not isinstance(vx, Vector) or self.shape[0] is not vx.shape[0] or self.shape[1] is not vx.shape[1]):
             print("Error: Wrong arguments")
@@ -99,12 +102,12 @@ class   Vector:
         for x in range(self.shape[0]):
             value = []
             for y in range(self.shape[1]):
-                value.append(float(self.values[x][y] - vx.values[x][y]))
+                value.append(float(vx.values[x][y] - self.values[x][y]))
             values.append(value)
         
         v = Vector(values)
         return(v)
-    
+
     def __truediv__(self, ix):
         if (not isinstance(ix, int) and not isinstance(ix, float)):
             print("Error: Wrong arguments")
@@ -122,9 +125,9 @@ class   Vector:
         v = Vector(values)
         return(v)
 
-    def ___rtruediv__(self, x):
+    def __rtruediv__(self, x):
         raise   NotImplementedError("Division of a scalar by a Vector is not defined here.")
-    
+
     def __mul__(self, ix):
         if (not isinstance(ix, float) and not isinstance(ix, int)):
             print("Error: Wrong arguments")
@@ -152,15 +155,14 @@ class   Vector:
             
         v = Vector(values)
         return(v)
-    
+
     def __str__(self) -> str:
         txt = str(self.values)
         return (txt)
-    
+
     def __repr__(self) -> str:
         txt = str(self.values)
         return(txt)
-        
 
 def	main( ):
     # Column vector of shape n * 1
